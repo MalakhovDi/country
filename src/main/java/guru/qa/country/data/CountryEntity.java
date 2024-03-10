@@ -1,5 +1,6 @@
 package guru.qa.country.data;
 
+import guru.qa.country.model.Country;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -62,5 +63,12 @@ public class CountryEntity {
   @Override
   public final int hashCode() {
     return this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass().hashCode() : getClass().hashCode();
+  }
+
+  public static CountryEntity fromJson(Country json) {
+    CountryEntity countryEntity = new CountryEntity();
+    countryEntity.setCountryName(json.countryName());
+    countryEntity.setCountryCode(json.countryCode());
+    return countryEntity;
   }
 }
